@@ -31,8 +31,8 @@
       --accent-glow: rgba(56, 189, 248, 0.25);
       --primary-cyan: #06b6d4;         /* Cyan */
       --primary-cyan-glow: rgba(6, 182, 212, 0.3);
-      --accent-violet: #a855f7;        /* Purple */
-      --accent-violet-glow: rgba(168, 85, 247, 0.3);
+      --accent-green: #10b981;        /* Premium Emerald Green */
+      --accent-green-glow: rgba(16, 185, 129, 0.3);
       --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -49,8 +49,8 @@
       --accent-glow: rgba(2, 132, 199, 0.15);
       --primary-cyan: #0891b2;
       --primary-cyan-glow: rgba(8, 145, 178, 0.15);
-      --accent-violet: #7c3aed;
-      --accent-violet-glow: rgba(124, 58, 237, 0.15);
+      --accent-green: #059669;
+      --accent-green-glow: rgba(5, 150, 105, 0.15);
       --shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
     }
 
@@ -66,6 +66,18 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    /* Background Wrapper to prevent infinite scroll */
+    .bg-blobs-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
     }
 
     /* Moving background light blobs for premium visual depth */
@@ -90,7 +102,7 @@
     .blob-2 {
       width: 500px;
       height: 500px;
-      background: var(--accent-violet);
+      background: var(--accent-green);
       bottom: -150px;
       right: -100px;
       animation-delay: -5s;
@@ -106,7 +118,7 @@
     .top-accent-bar {
       height: 6px;
       width: 100%;
-      background: linear-gradient(90deg, var(--primary-cyan), var(--accent), var(--accent-violet));
+      background: linear-gradient(90deg, var(--primary-cyan), var(--accent), var(--accent-green));
       box-shadow: 0 2px 10px var(--primary-cyan-glow);
     }
 
@@ -225,7 +237,7 @@
       font-size: 2.8rem;
       font-weight: 800;
       line-height: 1.2;
-      background: linear-gradient(135deg, var(--text-main) 30%, var(--accent) 70%, var(--accent-violet) 100%);
+      background: linear-gradient(135deg, var(--text-main) 30%, var(--accent) 70%, var(--accent-green) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 16px;
@@ -248,7 +260,7 @@
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 24px;
-      padding: 35px;
+      padding: 24px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -280,15 +292,15 @@
     }
 
     .module-icon-box {
-      width: 70px;
-      height: 70px;
-      border-radius: 18px;
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: #ffffff;
-      margin-bottom: 25px;
+      margin-bottom: 16px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       position: relative;
     }
@@ -298,7 +310,7 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 18px;
+      border-radius: 14px;
       top: 0;
       left: 0;
       background: inherit;
@@ -309,16 +321,16 @@
 
     .module-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.45rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       line-height: 1.35;
     }
 
     .module-description {
       color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 24px;
+      font-size: 0.88rem;
+      margin-bottom: 16px;
       line-height: 1.6;
       flex-grow: 1;
     }
@@ -330,16 +342,23 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--card-accent-1, var(--primary-cyan));
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+    }
+
+    .topic-list-header::-webkit-details-marker {
+      display: none;
     }
 
     .topic-items {
       list-style: none;
       padding: 0;
-      margin: 0 0 30px 0;
+      margin: 0 0 15px 0;
     }
 
     .topic-item {
@@ -355,6 +374,73 @@
       font-size: 0.85rem;
       color: var(--card-accent-1, var(--primary-cyan));
       flex-shrink: 0;
+    }
+
+    /* Search Box & Details Styling */
+    .search-box-container {
+      margin: 20px auto 40px auto;
+      max-width: 500px;
+    }
+    .search-box {
+      position: relative;
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 50px;
+      padding: 2px 20px 2px 50px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    [data-theme="light"] .search-box {
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .search-box:focus-within {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 20px var(--accent-green-glow);
+    }
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+    .search-input {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      color: var(--text-main) !important;
+      padding: 12px 0;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .search-input::placeholder {
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+    .clear-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 5px;
+      transition: var(--transition-smooth);
+    }
+    .clear-btn:hover {
+      color: var(--accent-green);
+    }
+
+    .topics-details {
+      margin-bottom: 15px;
+    }
+    .topics-details[open] .chevron-icon {
+      transform: rotate(180deg);
+    }
+    .chevron-icon {
+      transition: transform 0.3s ease;
     }
 
     /* Button custom hover */
@@ -472,9 +558,11 @@
   <!-- Top Accent Bar -->
   <div class="top-accent-bar"></div>
 
-  <!-- Background Animated Blobs -->
-  <div class="bg-blob blob-1"></div>
-  <div class="bg-blob blob-2"></div>
+  <!-- Background Animated Blobs Wrapper -->
+  <div class="bg-blobs-wrapper">
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
@@ -484,10 +572,10 @@
         <span class="logo-text d-none d-sm-inline">Axborot texnologiyalari</span>
       </a>
       <div class="d-flex align-items-center gap-3 ms-auto">
-        <div class="author-badge d-none d-md-flex">
+        <a href="https://t.me/Ozodbek_Napasov" target="_blank" class="author-badge d-none d-md-flex text-decoration-none">
           <span class="pulse-dot"></span>
           <span class="author-name">Muallif: Ozodbek Napasov</span>
-        </div>
+        </a>
         <button class="theme-toggle-btn" id="themeToggler" onclick="toggleTheme()" title="Rejimni o'zgartirish" id="themeBtn">
           <i class="fa-solid fa-sun" id="themeIcon"></i>
         </button>
@@ -505,6 +593,17 @@
       <p class="hero-subtitle">
         "Tibbiyotda axborot texnologiyalari" fani doirasida o'quv modullarini tanlang va chuqurlashtirilgan interaktiv mashg'ulotlar orqali o'rganishni boshlang.
       </p>
+      
+      <!-- Search Box Container -->
+      <div class="search-box-container">
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="Mavzular yoki darsliklarni izlash..." onkeyup="filterModules()">
+          <button class="clear-btn" id="clearSearchBtn" onclick="clearSearch()" style="display: none;">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
     </section>
 
     <!-- Interactive Cards Grid -->
@@ -524,30 +623,33 @@
               </div>
               <h2 class="module-title">Windows operatsion tizimi va texnik xizmat ko'rsatish</h2>
               <p class="module-description">
-                Windows operatsion tizimi, interfeys elementlari, fayllar bilan ishlash, tizim sozlamalari, arxivlash va kompyuterga texnik xizmat ko'rsatish asoslari.
+                Windows operatsion tizimi, interfeysi, sozlamalari va unga texnik xizmat ko'rsatish asoslari.
               </p>
               
-              <div class="topic-list-header">
-                <i class="fas fa-list-ul"></i> Darslik tarkibi:
-              </div>
-              <ul class="topic-items">
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2"></i>
-                  <span>Windows tarixi, turlari va interfeysi</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2"></i>
-                  <span>Fayllar va papkalar bilan to'g'ri ishlash</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2"></i>
-                  <span>Boshqaruv paneli va drayverlarni sozlash</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2"></i>
-                  <span>Kompyuterni optimallashtirish va tiklash</span>
-                </li>
-              </ul>
+              <details class="topics-details">
+                <summary class="topic-list-header">
+                  <span><i class="fas fa-list-ul me-2"></i> Darslik tarkibi</span>
+                  <i class="fas fa-chevron-down chevron-icon"></i>
+                </summary>
+                <ul class="topic-items mt-2">
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2"></i>
+                    <span>Windows tarixi, turlari va interfeysi</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2"></i>
+                    <span>Fayllar va papkalar bilan to'g'ri ishlash</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2"></i>
+                    <span>Boshqaruv paneli va drayverlarni sozlash</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2"></i>
+                    <span>Kompyuterni optimallashtirish va tiklash</span>
+                  </li>
+                </ul>
+              </details>
             </div>
             
             <a href="windows_darslik.html" class="btn btn-module" id="btnLinkWindows">
@@ -569,30 +671,33 @@
               </div>
               <h2 class="module-title">MS Office dasturlari va vazifalari</h2>
               <p class="module-description">
-                Microsoft Office paketining asosiy dasturlari: Word, Excel, PowerPoint va Access. Ularning tibbiyotda hisobotlar, tahlillar va ma'lumotlar bazasini boshqarishdagi o'rni.
+                MS Office (Word, Excel, PowerPoint, Access) dasturlari va ularning tibbiyotda qo'llanilishi.
               </p>
               
-              <div class="topic-list-header" style="color: var(--card-accent-1);">
-                <i class="fas fa-list-ul"></i> Darslik tarkibi:
-              </div>
-              <ul class="topic-items">
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>MS Word matn muharriri va tibbiy hujjatlar</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>MS Excel elektron jadvallari va tahlil</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>MS PowerPoint taqdimot materiallari</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>MS Access ma'lumotlar bazasini yaratish</span>
-                </li>
-              </ul>
+              <details class="topics-details">
+                <summary class="topic-list-header" style="color: var(--card-accent-1);">
+                  <span><i class="fas fa-list-ul me-2"></i> Darslik tarkibi</span>
+                  <i class="fas fa-chevron-down chevron-icon"></i>
+                </summary>
+                <ul class="topic-items mt-2">
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>MS Word matn muharriri va tibbiy hujjatlar</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>MS Excel elektron jadvallari va tahlil</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>MS PowerPoint taqdimot materiallari</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>MS Access ma'lumotlar bazasini yaratish</span>
+                  </li>
+                </ul>
+              </details>
             </div>
             
             <a href="office_darslik.html" class="btn btn-module" id="btnLinkOffice">
@@ -614,33 +719,180 @@
               </div>
               <h2 class="module-title">Kompyuter qurilmalari va dasturiy ta'minoti</h2>
               <p class="module-description">
-                Kompyuterning ichki va tashqi qurilmalari, apparat (Hardware) va dasturiy (Software) ta'minoti guruhlari hamda ularning tibbiyotdagi o'rni.
+                Kompyuterning ichki/tashqi qurilmalari hamda apparat va dasturiy ta'minotining asosiy guruhlari.
               </p>
               
-              <div class="topic-list-header" style="color: var(--card-accent-1);">
-                <i class="fas fa-list-ul"></i> Darslik tarkibi:
-              </div>
-              <ul class="topic-items">
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>Ichki va tashqi qurilmalar vazifalari</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>Ona plata va tizim bloki simulyatori</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>Hardware va Software taqqoslash</span>
-                </li>
-                <li class="topic-item">
-                  <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
-                  <span>Tibbiyotdagi keyslar va interaktiv o'yin</span>
-                </li>
-              </ul>
+              <details class="topics-details">
+                <summary class="topic-list-header" style="color: var(--card-accent-1);">
+                  <span><i class="fas fa-list-ul me-2"></i> Darslik tarkibi</span>
+                  <i class="fas fa-chevron-down chevron-icon"></i>
+                </summary>
+                <ul class="topic-items mt-2">
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Ichki va tashqi qurilmalar vazifalari</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Ona plata va tizim bloki simulyatori</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Hardware va Software taqqoslash</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Tibbiyotdagi keyslar va interaktiv o'yin</span>
+                  </li>
+                </ul>
+              </details>
             </div>
             
             <a href="hardware_software_darslik.html" class="btn btn-module" id="btnLinkHardwareSoftware">
+              Darslikni Boshlash <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Module 4: Word Printing -->
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="module-card" id="cardWordPrint" style="
+            --card-accent-1: #185abd; 
+            --card-accent-2: #38bdf8; 
+            --card-glow: rgba(24, 90, 189, 0.25);
+          ">
+            <div>
+              <div class="module-icon-box" style="background: linear-gradient(135deg, #185abd, #38bdf8);">
+                <i class="fas fa-print"></i>
+              </div>
+              <h2 class="module-title">Word dasturida printerdan bosmaga chiqarish</h2>
+              <p class="module-description">
+                Microsoft Word dasturida printer turlari, chop etish parametrlari va interaktiv simulyatorlar.
+              </p>
+              
+              <details class="topics-details">
+                <summary class="topic-list-header" style="color: var(--card-accent-1);">
+                  <span><i class="fas fa-list-ul me-2"></i> Darslik tarkibi</span>
+                  <i class="fas fa-chevron-down chevron-icon"></i>
+                </summary>
+                <ul class="topic-items mt-2">
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Lokal, tarmoq va virtual PDF printerlar</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Chop etish rejimlari va sahifalar yozilishi</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Oriyentatsiya, maydonlar (Поля) va masshtab</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Interaktiv chop etish simulyatori va 20 ta test</span>
+                  </li>
+                </ul>
+              </details>
+            </div>
+            
+            <a href="word_print_darslik.html" class="btn btn-module" id="btnLinkWordPrint">
+              Darslikni Boshlash <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Module 5: Excel Printing -->
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="module-card" id="cardExcelPrint" style="
+            --card-accent-1: #107c41; 
+            --card-accent-2: #21a366; 
+            --card-glow: rgba(16, 124, 65, 0.25);
+          ">
+            <div>
+              <div class="module-icon-box" style="background: linear-gradient(135deg, #107c41, #21a366);">
+                <i class="fas fa-file-excel"></i>
+              </div>
+              <h2 class="module-title">Excel dasturida printerdan bosmaga chiqarish</h2>
+              <p class="module-description">
+                Microsoft Excel elektron jadvallarini chop etishga sozlash, sarlavhalar va kolontitullar.
+              </p>
+              
+              <details class="topics-details">
+                <summary class="topic-list-header" style="color: var(--card-accent-1);">
+                  <span><i class="fas fa-list-ul me-2"></i> Darslik tarkibi</span>
+                  <i class="fas fa-chevron-down chevron-icon"></i>
+                </summary>
+                <ul class="topic-items mt-2">
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Chop etish sohasi (Область печати) sozlash</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Jadval o'lchamlari va masshtab (Масштабирование)</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Sarlavhalar (Печать заголовков) va kolontitullar</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Interaktiv Excel simulyatori va 20 ta test</span>
+                  </li>
+                </ul>
+              </details>
+            </div>
+            
+            <a href="excel_print_darslik.html" class="btn btn-module" id="btnLinkExcelPrint">
+              Darslikni Boshlash <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Module 6: PDF Printing -->
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="module-card" id="cardPdfPrint" style="
+            --card-accent-1: #e52230; 
+            --card-accent-2: #ff4757; 
+            --card-glow: rgba(229, 34, 48, 0.25);
+          ">
+            <div>
+              <div class="module-icon-box" style="background: linear-gradient(135deg, #e52230, #ff4757);">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <h2 class="module-title">PDF hujjatlarni printerdan bosmaga chiqarish</h2>
+              <p class="module-description">
+                PDF hujjatlarni Adobe Acrobat Reader darchasida masshtablash va chop etish rejimlari.
+              </p>
+              
+              <details class="topics-details">
+                <summary class="topic-list-header" style="color: var(--card-accent-1);">
+                  <span><i class="fas fa-list-ul me-2"></i> Darslik tarkibi</span>
+                  <i class="fas fa-chevron-down chevron-icon"></i>
+                </summary>
+                <ul class="topic-items mt-2">
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Adobe Reader print darchasi va parametrlari</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Sahifani varaqqa moslashtirish (Page Sizing & Handling)</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Bir varaqda bir nechta sahifa va Broshura (Booklet)</span>
+                  </li>
+                  <li class="topic-item">
+                    <i class="fas fa-check-double me-2" style="color: var(--card-accent-1);"></i>
+                    <span>Interaktiv PDF simulyatori va 20 ta test</span>
+                  </li>
+                </ul>
+              </details>
+            </div>
+            
+            <a href="pdf_print_darslik.html" class="btn btn-module" id="btnLinkPdfPrint">
               Darslikni Boshlash <i class="fas fa-arrow-right"></i>
             </a>
           </div>
@@ -657,9 +909,9 @@
       <div class="footer-text">
         &copy; 2026 Axborot Texnologiyalari Elektron Darsliklar Portali. Barcha huquqlar himoyalangan.
       </div>
-      <div class="footer-author">
+      <a href="https://t.me/Ozodbek_Napasov" target="_blank" class="footer-author text-decoration-none">
         Muallif: Ozodbek Napasov
-      </div>
+      </a>
     </div>
   </footer>
 
@@ -692,6 +944,71 @@
       document.documentElement.setAttribute('data-theme', savedTheme);
       updateThemeIcon(savedTheme);
     });
+
+    // Search Filtering and Highlighting Logic
+    function filterModules() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const clearBtn = document.getElementById('clearSearchBtn');
+      const cards = document.querySelectorAll('.modules-container .col-lg-4');
+      
+      if (query.length > 0) {
+        clearBtn.style.display = 'block';
+      } else {
+        clearBtn.style.display = 'none';
+      }
+      
+      cards.forEach(card => {
+        const title = card.querySelector('.module-title').textContent.toLowerCase();
+        const description = card.querySelector('.module-description').textContent.toLowerCase();
+        
+        // Check topics
+        const topics = Array.from(card.querySelectorAll('.topic-item')).map(item => item.textContent.toLowerCase());
+        
+        const matchesTitle = title.includes(query);
+        const matchesDescription = description.includes(query);
+        const matchesTopics = topics.some(topic => topic.includes(query));
+        
+        const details = card.querySelector('details');
+        
+        if (matchesTitle || matchesDescription || matchesTopics) {
+          card.style.display = '';
+          
+          if (query && matchesTopics) {
+            details.open = true;
+          } else if (!query) {
+            details.open = false;
+          }
+          
+          // Highlight match in topics list
+          card.querySelectorAll('.topic-item').forEach(item => {
+            const text = item.textContent.toLowerCase();
+            const span = item.querySelector('span');
+            if (!span) return;
+            
+            if (query && text.includes(query)) {
+              // Highlight the topic item text
+              const originalText = span.textContent;
+              const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
+              span.innerHTML = originalText.replace(regex, '<mark style="background: rgba(16, 185, 129, 0.3); color: var(--text-main); border-radius: 4px; padding: 0 4px;">$1</mark>');
+            } else {
+              // Reset highlighting
+              span.innerHTML = span.textContent;
+            }
+          });
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      filterModules();
+    }
+    
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
   </script>
 </body>
 </html>

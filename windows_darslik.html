@@ -1211,11 +1211,14 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
         <img src="LOGO.png" alt="Logo" class="logo-img">
         <span class="logo-text">Axborot texnologiyalari</span>
       </a>
       <div class="d-flex align-items-center gap-3 ms-auto">
+        <a href="index.html" class="btn btn-sm btn-outline-light border-0" title="Portalga qaytish">
+          <i class="fa-solid fa-house"></i> <span class="d-none d-sm-inline ms-1">Mundarija</span>
+        </a>
         <div class="author-badge d-none d-md-flex">
           <span class="pulse-dot"></span>
           <span class="author-name">Muallif: Ozodbek Napasov</span>
@@ -2243,13 +2246,15 @@
       const htmlEl = document.documentElement;
       const themeIcon = document.getElementById('themeIcon');
       const currentTheme = htmlEl.getAttribute('data-theme');
+      const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
       
-      if (currentTheme === 'dark') {
-        htmlEl.setAttribute('data-theme', 'light');
-        themeIcon.className = "fa-solid fa-moon";
-      } else {
-        htmlEl.setAttribute('data-theme', 'dark');
+      htmlEl.setAttribute('data-theme', targetTheme);
+      localStorage.setItem('darslik-theme', targetTheme);
+      
+      if (targetTheme === 'dark') {
         themeIcon.className = "fa-solid fa-sun";
+      } else {
+        themeIcon.className = "fa-solid fa-moon";
       }
     }
 
@@ -3126,6 +3131,12 @@
 
     // Initialize Everything
     window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('darslik-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const themeIcon = document.getElementById('themeIcon');
+      if (themeIcon) {
+        themeIcon.className = savedTheme === 'dark' ? "fa-solid fa-sun" : "fa-solid fa-moon";
+      }
       initQuiz();
     });
   </script>
