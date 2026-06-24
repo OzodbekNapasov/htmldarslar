@@ -714,6 +714,21 @@
       color: #ef4444 !important;
     }
 
+    /* Light mode specific correct/incorrect quiz overrides */
+    [data-theme="light"] .quiz-option-btn.correct,
+    [data-theme="light"] .quiz-option-btn.correct * {
+      color: #10b981 !important;
+      background-color: rgba(16, 185, 129, 0.15) !important;
+    }
+    [data-theme="light"] .quiz-option-btn.incorrect,
+    [data-theme="light"] .quiz-option-btn.incorrect * {
+      color: #ef4444 !important;
+      background-color: rgba(239, 68, 68, 0.15) !important;
+    }
+    [data-theme="light"] .bg-dark .bg-secondary-subtle {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
     .quiz-question-box {
       display: none;
     }
@@ -781,30 +796,112 @@
       border-top: 1px solid rgba(10, 25, 47, 0.08);
     }
 
-    /* Keep text readable inside permanently dark containers in light theme */
-    [data-theme="light"] .bg-dark,
-    [data-theme="light"] .wifi-flyout,
-    [data-theme="light"] .cmd-terminal,
-    [data-theme="light"] .sandbox-canvas,
-    [data-theme="light"] .diag-box {
+    /* Keep background and all text/icons inside permanently dark containers dark & readable in light theme */
+    [data-theme="light"] .bg-dark {
+      background-color: #0a192f !important;
+      color: #e2e8f0 !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    [data-theme="light"] .wifi-step-container {
+      background-color: #1e1e1e !important;
+      color: #e2e8f0 !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    [data-theme="light"] .wifi-flyout {
+      background-color: #202020 !important;
+      color: #e2e8f0 !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    [data-theme="light"] .cmd-terminal {
+      background-color: #000000 !important;
+      color: #00ff00 !important;
+      border-color: #333333 !important;
+    }
+    [data-theme="light"] .sandbox-canvas {
+      background: radial-gradient(circle, rgba(17,34,64,0.4) 0%, rgba(10,25,47,0.8) 100%) !important;
       color: #e2e8f0 !important;
     }
-    
-    [data-theme="light"] .bg-dark .text-white,
-    [data-theme="light"] .bg-dark h1, [data-theme="light"] .bg-dark h2, [data-theme="light"] .bg-dark h3, [data-theme="light"] .bg-dark h4, [data-theme="light"] .bg-dark h5, [data-theme="light"] .bg-dark h6,
-    [data-theme="light"] .bg-dark strong, [data-theme="light"] .bg-dark p, [data-theme="light"] .bg-dark div, [data-theme="light"] .bg-dark span,
-    [data-theme="light"] .wifi-flyout .text-white, [data-theme="light"] .wifi-flyout strong, [data-theme="light"] .wifi-flyout span,
-    [data-theme="light"] .cmd-terminal .text-white, [data-theme="light"] .cmd-terminal span, [data-theme="light"] .cmd-terminal .cmd-prompt,
-    [data-theme="light"] .sandbox-canvas .text-white, [data-theme="light"] .sandbox-canvas span,
-    [data-theme="light"] .diag-box .text-white, [data-theme="light"] .diag-box span, [data-theme="light"] .diag-box p, [data-theme="light"] .diag-box h6 {
+    [data-theme="light"] .diag-box {
+      background-color: #1a1a1a !important;
+      color: #e2e8f0 !important;
+      border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    [data-theme="light"] .windows-taskbar-tray {
+      background-color: #111111 !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .wifi-network-item {
+      background-color: #2b2b2b !important;
+      color: #ffffff !important;
+    }
+    [data-theme="light"] .wifi-network-item:hover {
+      background-color: #3a3a3a !important;
+    }
+    [data-theme="light"] .wifi-network-item.selected {
+      background-color: rgba(255, 107, 0, 0.2) !important;
+      border: 1px solid var(--accent) !important;
+    }
+
+    /* Force all text/icons inside permanently dark elements to stay white/light in light mode */
+    [data-theme="light"] .bg-dark *,
+    [data-theme="light"] .wifi-step-container *,
+    [data-theme="light"] .wifi-flyout *,
+    [data-theme="light"] .cmd-terminal *,
+    [data-theme="light"] .sandbox-canvas *,
+    [data-theme="light"] .windows-taskbar-tray *,
+    [data-theme="light"] .wifi-network-item *,
+    [data-theme="light"] .diag-box * {
       color: #ffffff !important;
     }
 
+    /* Specific overrides to allow colored text inside dark containers */
     [data-theme="light"] .bg-dark .text-muted,
+    [data-theme="light"] .wifi-step-container .text-muted,
     [data-theme="light"] .wifi-flyout .text-muted,
     [data-theme="light"] .cmd-terminal .text-muted,
+    [data-theme="light"] .sandbox-canvas .text-muted,
     [data-theme="light"] .diag-box .text-muted {
       color: #94a3b8 !important;
+    }
+
+    [data-theme="light"] .bg-dark .text-warning,
+    [data-theme="light"] .wifi-step-container .text-warning,
+    [data-theme="light"] .wifi-flyout .text-warning,
+    [data-theme="light"] .cmd-terminal .text-warning,
+    [data-theme="light"] .sandbox-canvas .text-warning,
+    [data-theme="light"] .diag-box .text-warning {
+      color: #ffc107 !important;
+    }
+
+    [data-theme="light"] .bg-dark .text-success,
+    [data-theme="light"] .wifi-step-container .text-success,
+    [data-theme="light"] .wifi-flyout .text-success,
+    [data-theme="light"] .cmd-terminal .text-success,
+    [data-theme="light"] .sandbox-canvas .text-success,
+    [data-theme="light"] .diag-box .text-success {
+      color: #20c997 !important;
+    }
+
+    [data-theme="light"] .bg-dark .text-info,
+    [data-theme="light"] .wifi-step-container .text-info,
+    [data-theme="light"] .wifi-flyout .text-info,
+    [data-theme="light"] .cmd-terminal .text-info,
+    [data-theme="light"] .sandbox-canvas .text-info,
+    [data-theme="light"] .diag-box .text-info {
+      color: #0dcaf0 !important;
+    }
+
+    [data-theme="light"] .bg-dark .text-accent,
+    [data-theme="light"] .wifi-step-container .text-accent,
+    [data-theme="light"] .wifi-flyout .text-accent,
+    [data-theme="light"] .cmd-terminal .text-accent,
+    [data-theme="light"] .sandbox-canvas .text-accent,
+    [data-theme="light"] .diag-box .text-accent {
+      color: #ff6b00 !important;
+    }
+
+    [data-theme="light"] .cmd-input {
+      color: #00ff00 !important;
     }
 
     [data-theme="light"] .bg-dark .text-warning,
@@ -844,6 +941,18 @@
     
     [data-theme="light"] .cmd-input {
       color: #00ff00 !important;
+    }
+
+    /* Override Bootstrap bg-secondary-subtle for theme consistency */
+    .bg-secondary-subtle {
+      background-color: rgba(255, 255, 255, 0.03) !important;
+      color: var(--text-main) !important;
+      border-color: var(--border-color) !important;
+    }
+    [data-theme="light"] .bg-secondary-subtle {
+      background-color: rgba(11, 15, 25, 0.04) !important;
+      color: var(--text-main) !important;
+      border-color: var(--border-color) !important;
     }
   </style>
 </head>
@@ -953,7 +1062,7 @@
         <!-- 1-Bo'lim. Kirish -->
         <section class="custom-card scroll-animate" id="section-1">
           <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> 1-Bo'lim. Kirish</h2>
-          <p>Zamonaviy dunyoda **Internet** barcha sohalar kabi tibbiyotda ham asosiy boshqaruv va aloqa vositasiga aylandi. Internet — bu butun dunyodagi millionlab kompyuter va tarmoqlarni o'zaro bog'lovchi global global axborot tizimidir. U ma'lumotlarni paketlar shaklida uzatish (IP protokoli) yordamida ishlaydi.</p>
+          <p>Zamonaviy dunyoda **Internet** barcha sohalar kabi tibbiyotda ham asosiy boshqaruv va aloqa vositasiga aylandi. Internet — bu butun dunyodagi millionlab kompyuter va tarmoqlarni o'zaro bog'lovchi global axborot tizimidir. U ma'lumotlarni paketlar shaklida uzatish (IP protokoli) yordamida ishlaydi.</p>
           
           <div class="row mt-4">
             <div class="col-md-6 mb-3">
@@ -1673,29 +1782,31 @@
           <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> 17-Bo'lim. Bilimingizni sinang (20 ta Test)</h2>
           <p class="mb-4">Ushbu mavzu bo'yicha bilim darajangizni tekshirib ko'ring. Test yakunida 5 ballik OTM baholash tizimi bo'yicha baholanadi.</p>
           
-          <div id="quizQuestionsContainer">
-            <!-- Questions are dynamically inserted here -->
-          </div>
+          <div class="p-4 rounded bg-dark border border-secondary" id="quizWrapperBox">
+            <div id="quizQuestionsContainer">
+              <!-- Questions are dynamically inserted here -->
+            </div>
 
-          <!-- Navigation Controls -->
-          <div class="d-flex justify-content-between align-items-center mt-4">
-            <button class="btn btn-secondary" onclick="prevQuizQuestion()" id="quizPrevBtn" disabled>
-              <i class="fa-solid fa-chevron-left me-2"></i> Avvalgisi
-            </button>
-            <span class="fw-bold text-accent" id="quizProgressLabel">Savol 1 / 20</span>
-            <button class="btn btn-info text-white" style="background-color: var(--accent); border:none;" onclick="nextQuizQuestion()" id="quizNextBtn">
-              Keyingi <i class="fa-solid fa-chevron-right ms-2"></i>
-            </button>
-          </div>
+            <!-- Navigation Controls -->
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top border-secondary">
+              <button class="btn btn-secondary" onclick="prevQuizQuestion()" id="quizPrevBtn" disabled>
+                <i class="fa-solid fa-chevron-left me-2"></i> Avvalgisi
+              </button>
+              <span class="fw-bold text-accent" id="quizProgressLabel">Savol 1 / 20</span>
+              <button class="btn btn-info text-white" style="background-color: var(--accent); border:none;" onclick="nextQuizQuestion()" id="quizNextBtn">
+                Keyingi <i class="fa-solid fa-chevron-right ms-2"></i>
+              </button>
+            </div>
 
-          <!-- Result Container (hidden by default) -->
-          <div class="mt-4 p-4 bg-secondary-subtle border border-secondary rounded text-center d-none" id="quizResultBox">
-            <h3 class="text-white mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i> Test Yakunlandi!</h3>
-            <h4 class="mb-2 text-white">Natija: <span id="quizScoreText" class="text-accent fw-bold">-- / 20</span></h4>
-            <p id="quizPercentageText" class="text-muted">Foiz ko'rsatkichi: --%</p>
-            <div id="quizGradeBadge" class="badge bg-success fs-5 p-3 px-4 rounded-pill mb-3">Baho: --</div>
-            <div>
-              <button class="btn btn-warning text-white font-weight-bold" style="background-color: var(--accent); border:none;" onclick="restartQuiz()"><i class="fa-solid fa-arrows-rotate me-2"></i> Qaytadan topshirish</button>
+            <!-- Result Container (hidden by default) -->
+            <div class="mt-4 p-4 bg-dark border border-secondary rounded text-center d-none" id="quizResultBox">
+              <h3 class="text-white mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i> Test Yakunlandi!</h3>
+              <h4 class="mb-2 text-white">Natija: <span id="quizScoreText" class="text-accent fw-bold">-- / 20</span></h4>
+              <p id="quizPercentageText" class="text-muted">Foiz ko'rsatkichi: --%</p>
+              <div id="quizGradeBadge" class="badge bg-success fs-5 p-3 px-4 rounded-pill mb-3">Baho: --</div>
+              <div>
+                <button class="btn btn-warning text-white font-weight-bold" style="background-color: var(--accent); border:none;" onclick="restartQuiz()"><i class="fa-solid fa-arrows-rotate me-2"></i> Qaytadan topshirish</button>
+              </div>
             </div>
           </div>
         </section>
@@ -2274,8 +2385,10 @@ Addresses:  142.250.190.46
             ${mappedOptions.map((option, optIdx) => `
               <div class="col-12">
                 <button class="quiz-option-btn" id="q${idx}opt${option.originalIdx}" onclick="selectQuizOption(${idx}, ${option.originalIdx})">
-                  <span class="badge bg-secondary rounded-circle" style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;">${String.fromCharCode(65 + optIdx)}</span>
-                  ${option.text}
+                  <div class="d-flex align-items-center gap-3 option-content-wrapper">
+                    <span class="badge bg-secondary rounded-circle" style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">${String.fromCharCode(65 + optIdx)}</span>
+                    <span class="option-text text-start">${option.text}</span>
+                  </div>
                 </button>
               </div>
             `).join('')}
