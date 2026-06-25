@@ -183,6 +183,19 @@
       background: linear-gradient(135deg, var(--text-main) 40%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      transition: var(--transition-smooth);
+    }
+    .navbar-brand:hover .logo-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--secondary-accent) 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      filter: drop-shadow(0 0 8px var(--accent-glow));
+    }
+    .logo-img {
+      transition: var(--transition-smooth);
+    }
+    .navbar-brand:hover .logo-img {
+      transform: scale(1.08);
     }
 
     .author-badge {
@@ -1062,13 +1075,13 @@
         <!-- 1-Bo'lim. Kirish -->
         <section class="custom-card scroll-animate" id="section-1">
           <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> 1-Bo'lim. Kirish</h2>
-          <p>Zamonaviy dunyoda **Internet** barcha sohalar kabi tibbiyotda ham asosiy boshqaruv va aloqa vositasiga aylandi. Internet — bu butun dunyodagi millionlab kompyuter va tarmoqlarni o'zaro bog'lovchi global axborot tizimidir. U ma'lumotlarni paketlar shaklida uzatish (IP protokoli) yordamida ishlaydi.</p>
+          <p>Zamonaviy dunyoda <strong>Internet</strong> barcha sohalar kabi tibbiyotda ham asosiy boshqaruv va aloqa vositasiga aylandi. Internet — bu butun dunyodagi millionlab kompyuter va tarmoqlarni o'zaro bog'lovchi global axborot tizimidir. U ma'lumotlarni paketlar shaklida uzatish (IP protokoli) yordamida ishlaydi.</p>
           
           <div class="row mt-4">
             <div class="col-md-6 mb-3">
               <div class="p-3 rounded bg-secondary-subtle border border-secondary">
                 <h5 class="text-accent fw-bold"><i class="fa-solid fa-network-wired me-2"></i> Tarmoq nima?</h5>
-                <p class="small mb-0">Ikki yoki undan ortiq qurilmalarning ma'lumot almashish maqsadida o'zaro simli (kabel) yoki simsiz (Wi-Fi) bog'lanishi **tarmoq** deb ataladi.</p>
+                <p class="small mb-0">Ikki yoki undan ortiq qurilmalarning ma'lumot almashish maqsadida o'zaro simli (kabel) yoki simsiz (Wi-Fi) bog'lanishi <strong>tarmoq</strong> deb ataladi.</p>
               </div>
             </div>
             <div class="col-md-6 mb-3">
@@ -1247,7 +1260,7 @@
         <!-- 4-Bo'lim. Noutbukni Wi-Fi orqali internetga ulash -->
         <section class="custom-card scroll-animate" id="section-4">
           <h2 class="section-title"><i class="fa-solid fa-laptop"></i> 4-Bo'lim. Noutbukni Wi-Fi ga ulash</h2>
-          <p>Noutbuklar ichki Wi-Fi modulga ega bo'lganligi sababli qo'shimcha qurilmasiz ulanadi. Windows operatsion tizimining **rus tilidagi interfeysi** misolida bosqichma-bosqich jarayonni ko'ring:</p>
+          <p>Noutbuklar ichki Wi-Fi modulga ega bo'lganligi sababli qo'shimcha qurilmasiz ulanadi. Windows operatsion tizimining <strong>rus tilidagi interfeysi</strong> misolida bosqichma-bosqich jarayonni ko'ring:</p>
           
           <div class="row">
             <div class="col-md-6 mb-4 mb-md-0">
@@ -1317,7 +1330,7 @@
         <!-- 5-Bo'lim. Shaxsiy kompyuterni Wi-Fi ga ulash -->
         <section class="custom-card scroll-animate" id="section-5">
           <h2 class="section-title"><i class="fa-solid fa-computer"></i> 5-Bo'lim. Shaxsiy kompyuterni Wi-Fi ga ulash</h2>
-          <p>Aksariyat statsionar shaxsiy kompyuterlar (PC) ona platasida ichki Wi-Fi modul bo'lmaydi. Ularni simsiz tarmoqqa ulash uchun **Wi-Fi adapterlaridan** foydalaniladi:</p>
+          <p>Aksariyat statsionar shaxsiy kompyuterlar (PC) ona platasida ichki Wi-Fi modul bo'lmaydi. Ularni simsiz tarmoqqa ulash uchun <strong>Wi-Fi adapterlaridan</strong> foydalaniladi:</p>
           
           <div class="row mt-4">
             <div class="col-md-6 mb-3">
@@ -1341,7 +1354,7 @@
         <!-- 6-Bo'lim. Ethernet kabel orqali ulanish -->
         <section class="custom-card scroll-animate" id="section-6">
           <h2 class="section-title"><i class="fa-solid fa-plug"></i> 6-Bo'lim. Ethernet kabel orqali ulanish</h2>
-          <p>Ethernet (kabel) orqali ulanish eng tez va barqaror ulanish turi hisoblanadi. Buning uchun **RJ-45** konnektorli tarmoq kabeli va kompyuterdagi **LAN porti** kerak bo'ladi.</p>
+          <p>Ethernet (kabel) orqali ulanish eng tez va barqaror ulanish turi hisoblanadi. Buning uchun <strong>RJ-45</strong> konnektorli tarmoq kabeli va kompyuterdagi <strong>LAN porti</strong> kerak bo'ladi.</p>
           
           <div class="row">
             <div class="col-md-7 mb-4 mb-md-0">
@@ -1418,7 +1431,7 @@
         <!-- 8-Bo'lim. Internet sozlamalari -->
         <section class="custom-card scroll-animate" id="section-8">
           <h2 class="section-title"><i class="fa-solid fa-gear"></i> 8-Bo'lim. Internet sozlamalari</h2>
-          <p>Windows 10/11 operatsion tizimida tarmoqni mukammal sozlash va tekshirish uchun **Параметры** (Sozlamalar) panelidan foydalanamiz:</p>
+          <p>Windows 10/11 operatsion tizimida tarmoqni mukammal sozlash va tekshirish uchun <strong>Параметры</strong> (Sozlamalar) panelidan foydalanamiz:</p>
           
           <div class="p-3 rounded bg-dark border border-secondary">
             <h5 class="text-white mb-3 fw-bold"><i class="fa-solid fa-folder-open text-warning me-2"></i> Параметры &rarr; Сеть и Интернет</h5>
@@ -1460,7 +1473,7 @@
         <!-- 9-Bo'lim. IP manzil va DNS -->
         <section class="custom-card scroll-animate" id="section-9">
           <h2 class="section-title"><i class="fa-solid fa-network-wired"></i> 9-Bo'lim. IP manzil va DNS</h2>
-          <p>Har bir tarmoqqa ulangan qurilmaning o'zining yagona manzili bo'ladi. Ular **IP-manzil** va **DNS** yordamida muloqot qiladi:</p>
+          <p>Har bir tarmoqqa ulangan qurilmaning o'zining yagona manzili bo'ladi. Ular <strong>IP-manzil</strong> va <strong>DNS</strong> yordamida muloqot qiladi:</p>
           
           <ul>
             <li><strong>IP address (Internet Protocol Address):</strong> Tarmoqdagi qurilmaning raqamli manzili.
@@ -1578,7 +1591,7 @@
         <!-- 12-Bo'lim. CMD orqali tarmoqni tekshirish -->
         <section class="custom-card scroll-animate" id="section-12">
           <h2 class="section-title"><i class="fa-solid fa-terminal"></i> 12-Bo'lim. CMD orqali tarmoqni tekshirish</h2>
-          <p>Tizim ma'murlari tarmoqni tekshirish va nosozliklarni izlashda **Командная строка (CMD)** buyruqlaridan foydalanadilar:</p>
+          <p>Tizim ma'murlari tarmoqni tekshirish va nosozliklarni izlashda <strong>Командная строка (CMD)</strong> buyruqlaridan foydalanadilar:</p>
           
           <ul>
             <li><strong><code>ipconfig</code>:</strong> Mahalliy IP manzilni, tarmoq niqobini va asosiy shlyuz (gateway) manzilini ko'rsatadi.</li>

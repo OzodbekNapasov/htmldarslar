@@ -180,6 +180,19 @@
       background: linear-gradient(135deg, var(--text-main) 40%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      transition: var(--transition-smooth);
+    }
+    .navbar-brand:hover .logo-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--secondary-accent) 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      filter: drop-shadow(0 0 8px var(--accent-glow));
+    }
+    .logo-img {
+      transition: var(--transition-smooth);
+    }
+    .navbar-brand:hover .logo-img {
+      transform: scale(1.08);
     }
 
     .author-badge {
@@ -1422,7 +1435,7 @@
             <h2>9-Bo'lim. Ish stoli (Рабочий стол)</h2>
           </div>
           <p>
-            Kompyuter to'liq yuklangandan so'ng ekranda paydo bo'ladigan dastlabki ish maydoni **Рабочий стол** (Ish stoli) deb ataladi. Unda quyidagi asosiy piktogrammalar (ikonkalar) va tizim boshqaruv panellari joylashgan:
+            Kompyuter to'liq yuklangandan so'ng ekranda paydo bo'ladigan dastlabki ish maydoni <strong>Рабочий стол</strong> (Ish stoli) deb ataladi. Unda quyidagi asosiy piktogrammalar (ikonkalar) va tizim boshqaruv panellari joylashgan:
           </p>
 
           <!-- Interactive Desktop -->
