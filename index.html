@@ -665,9 +665,203 @@
       font-weight: 600;
       color: var(--accent);
     }
+  
+    /* Login Overlay Styling */
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    [data-theme="light"] .login-overlay {
+      background: rgba(241, 245, 249, 0.8);
+    }
+
+    .login-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 420px;
+      padding: 35px 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: cardEntrance 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes cardEntrance {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .login-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary-cyan), var(--accent));
+      color: white;
+      font-size: 1.7rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px var(--primary-cyan-glow);
+    }
+
+    .login-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .login-subtitle {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .login-input-wrapper {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .login-input-wrapper i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .login-input {
+      width: 100%;
+      background: rgba(30, 41, 59, 0.4) !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: 50px;
+      padding: 12px 20px 12px 50px;
+      color: var(--text-main) !important;
+      font-size: 0.95rem;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    [data-theme="light"] .login-input {
+      background: rgba(255, 255, 255, 0.65) !important;
+    }
+
+    .login-input:focus {
+      border-color: var(--primary-cyan) !important;
+      box-shadow: 0 0 15px var(--primary-cyan-glow);
+    }
+
+    .login-error-msg {
+      color: #ef4444;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: shake 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .login-btn {
+      background: linear-gradient(135deg, var(--primary-cyan), var(--accent));
+      color: white !important;
+      border: none;
+      border-radius: 50px;
+      padding: 13px 28px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px var(--primary-cyan-glow);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px var(--primary-cyan-glow);
+    }
+
+    /* Logout Button Style */
+    .logout-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background: rgba(239, 68, 68, 0.08);
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .logout-btn:hover {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: #ef4444;
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.25);
+      transform: scale(1.05);
+    }
+
+    [data-theme="light"] .logout-btn {
+      background: rgba(239, 68, 68, 0.05);
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- Login Overlay -->
+  <div id="loginOverlay" class="login-overlay" style="display: none;">
+    <div class="login-card">
+      <div class="login-icon">
+        <i class="fa-solid fa-user-lock"></i>
+      </div>
+      <h3 class="login-title">Tizimga kirish</h3>
+      <p class="login-subtitle">Darsliklar portaliga kirish uchun loginingizni kiriting:</p>
+      <div class="login-input-wrapper">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="loginInput" class="login-input" placeholder="Login..." onkeydown="if(event.key === 'Enter') handleLoginSubmit()">
+      </div>
+      <div id="loginErrorMsg" class="login-error-msg">
+        <i class="fa-solid fa-circle-exclamation me-1"></i> Login noto'g'ri!
+      </div>
+      <button onclick="handleLoginSubmit()" class="login-btn">
+        Kirish <i class="fa-solid fa-right-to-bracket ms-2"></i>
+      </button>
+    </div>
+  </div>
+
 
   <!-- Top Accent Bar -->
   <div class="top-accent-bar"></div>
@@ -688,9 +882,12 @@
       <div class="d-flex align-items-center gap-3 ms-auto">
         <a href="https://t.me/Ozodbek_Napasov" target="_blank" class="author-badge d-none d-md-flex text-decoration-none">
           <span class="pulse-dot"></span>
-          <span class="author-name">Muallif: Ozodbek Napasov</span>
+          <span class="author-name">Muallif: {{AUTHOR}}</span>
           <i class="fab fa-telegram ms-1" style="color: var(--accent); font-size: 0.95rem;"></i>
         </a>
+                <button class="logout-btn" onclick="logout()" title="Chiqish" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
         <button class="theme-toggle-btn" id="themeToggler" onclick="toggleTheme()" title="Rejimni o'zgartirish" id="themeBtn">
           <i class="fa-solid fa-sun" id="themeIcon"></i>
         </button>
@@ -1377,7 +1574,7 @@
         &copy; 2026 Axborot Texnologiyalari Elektron Darsliklar Portali. Barcha huquqlar himoyalangan.
       </div>
       <a href="https://t.me/Ozodbek_Napasov" target="_blank" class="footer-author text-decoration-none">
-        Muallif: Ozodbek Napasov
+        Muallif: {{AUTHOR}}
       </a>
     </div>
   </footer>
@@ -1407,6 +1604,7 @@
 
     // Initialize theme from storage
     window.addEventListener('DOMContentLoaded', () => {
+      checkLoginState();
       const savedTheme = localStorage.getItem('darslik-theme') || 'dark';
       document.documentElement.setAttribute('data-theme', savedTheme);
       updateThemeIcon(savedTheme);
@@ -1476,6 +1674,97 @@
     function escapeRegExp(string) {
       return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
+  
+    // Login System Logic
+    function checkLoginState() {
+      const savedLogin = localStorage.getItem('darslik_login');
+      const overlay = document.getElementById('loginOverlay');
+      
+      if (savedLogin === 'Napasov' || savedLogin === 'Umirov') {
+        if (overlay) overlay.style.display = 'none';
+        document.body.style.overflow = '';
+        applyAuthorName(savedLogin);
+      } else {
+        if (overlay) overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function handleLoginSubmit() {
+      const input = document.getElementById('loginInput');
+      const errorMsg = document.getElementById('loginErrorMsg');
+      const loginVal = input.value.trim();
+      
+      let loginName = '';
+      if (loginVal.toLowerCase() === 'napasov') {
+        loginName = 'Napasov';
+      } else if (loginVal.toLowerCase() === 'umirov') {
+        loginName = 'Umirov';
+      }
+      
+      if (loginName) {
+        localStorage.setItem('darslik_login', loginName);
+        errorMsg.style.display = 'none';
+        checkLoginState();
+        window.location.reload();
+      } else {
+        errorMsg.style.display = 'flex';
+        input.focus();
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('darslik_login');
+      window.location.reload();
+    }
+
+        function applyAuthorName(loginName) {
+      const authorName = loginName === 'Umirov' ? 'Zafar Umirov' : 'Ozodbek Napasov';
+      
+      // Traverse text nodes to replace {{AUTHOR}}
+      function walk(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          if (node.nodeValue.includes('{{AUTHOR}}')) {
+            node.nodeValue = node.nodeValue.replace(/{{AUTHOR}}/g, authorName);
+          }
+        } else {
+          if (node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+            for (let child of node.childNodes) {
+              walk(child);
+            }
+          }
+        }
+      }
+      walk(document.body);
+
+      // Hide Telegram link for Umirov
+      const isUmirov = (loginName === 'Umirov');
+      const tgLinks = document.querySelectorAll('a[href*="t.me/Ozodbek_Napasov"]');
+      tgLinks.forEach(link => {
+        if (isUmirov) {
+          link.setAttribute('data-orig-href', link.getAttribute('href') || '');
+          link.removeAttribute('href');
+          link.style.pointerEvents = 'none';
+          link.style.cursor = 'default';
+          
+          const icon = link.querySelector('.fa-telegram, .fab.fa-telegram');
+          if (icon) {
+            icon.style.display = 'none';
+          }
+        } else {
+          const origHref = link.getAttribute('data-orig-href') || 'https://t.me/Ozodbek_Napasov';
+          link.setAttribute('href', origHref);
+          link.style.pointerEvents = '';
+          link.style.cursor = '';
+          
+          const icon = link.querySelector('.fa-telegram, .fab.fa-telegram');
+          if (icon) {
+            icon.style.display = '';
+          }
+        }
+      });
+    }
+
   </script>
 </body>
 </html>
